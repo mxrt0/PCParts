@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/PCParts/PCParts/appsettings.Development.json
+/PCParts/PCParts/PCParts.db
+/PCParts/PCParts/PcPartsDbContextFactory.cs
