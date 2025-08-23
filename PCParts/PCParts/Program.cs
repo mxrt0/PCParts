@@ -19,6 +19,7 @@ public class Program
             .AddInteractiveServerComponents()
             .AddInteractiveWebAssemblyComponents();
         builder.Services.AddScoped<IProductsService, ProductsService>();
+        builder.Services.AddScoped<ICategoriesService, CategoriesService>();
         builder.Services.AddControllers();
 
         builder.Services.AddDbContext<PcPartsDbContext>(options =>

@@ -41,6 +41,6 @@ public class ProductsService : IProductsService
         .FirstOrDefaultAsync(p => p.Id == productId && !p.IsDeleted)
         ?? throw new ProductNotFoundException("Product not found!");
 
-        return product.ToDto();
+        return product.ToDto()!;
     }
 }
