@@ -364,3 +364,5 @@ FodyWeavers.xsd
 /PCParts/PCParts/appsettings.Development.json
 /PCParts/PCParts/PCParts.db
 /PCParts/PCParts/PcPartsDbContextFactory.cs
+/PCParts/PCParts/PCParts.db-shm
+/PCParts/PCParts/PCParts.db-wal
