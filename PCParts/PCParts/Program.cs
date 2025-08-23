@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using PCParts.Components;
 using PCParts.Data.Context;
+using PCParts.Services;
+using PCParts.Services.Contracts;
 
 namespace PCParts;
 
@@ -16,7 +18,7 @@ public class Program
         builder.Services.AddRazorComponents()
             .AddInteractiveServerComponents()
             .AddInteractiveWebAssemblyComponents();
-
+        builder.Services.AddScoped<IProductsService, ProductsService>();
         builder.Services.AddControllers();
 
         builder.Services.AddDbContext<PcPartsDbContext>(options =>
