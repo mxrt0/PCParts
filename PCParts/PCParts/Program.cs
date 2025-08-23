@@ -20,7 +20,7 @@ public class Program
         builder.Services.AddControllers();
 
         builder.Services.AddDbContext<PcPartsDbContext>(options =>
-            options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("PCParts"))
+            options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"))
         );
 
         var app = builder.Build();
