@@ -75,4 +75,15 @@ public class SalesService : ISalesService
             ?? throw new SaleNotFoundException("Unable to find sale!");
         return sale.ToDto();
     }
+
+    public async Task<List<SaleDto>> GetSalesAsync(int pageNumber, int pageSize)
+    {
+        var sales = await _dbContext.Sales
+            .Include(s => s.ProductSales)
+            .ThenInclude(ps => ps.Product)
+            .Skip((pageNumber - 1) * pageSize)
+            .Take(pageSize).ToListAsync();
+
+        return sales.Select(s => s.ToDto()).ToList();
+    }
 }

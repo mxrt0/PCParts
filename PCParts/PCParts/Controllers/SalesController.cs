@@ -52,4 +52,18 @@ public class SalesController : ControllerBase
         }
     }
 
+    [HttpGet]
+    public async Task<ActionResult<List<SaleDto>>> GetSales([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+    {
+        try
+        {
+            var products = await _salesService.GetSalesAsync(pageNumber, pageSize);
+            return Ok(products);
+        }
+        catch (Exception)
+        {
+            return StatusCode(500, new { errorMessage = "Internal server error!" });
+        }
+    }
+
 }
