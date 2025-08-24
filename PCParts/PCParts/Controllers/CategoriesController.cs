@@ -40,7 +40,7 @@ public class CategoriesController : ControllerBase
         }
         catch (CategoryNotFoundException ex)
         {
-            return BadRequest(new { errorMessage = ex.Message });
+            return NotFound(new { errorMessage = ex.Message });
         }
     }
 
@@ -54,7 +54,7 @@ public class CategoriesController : ControllerBase
         }
         catch (CategoryNotFoundException ex)
         {
-            return BadRequest(new { errorMessage = ex.Message });
+            return NotFound(new { errorMessage = ex.Message });
         }
     }
 }

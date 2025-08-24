@@ -20,6 +20,7 @@ public class Program
             .AddInteractiveWebAssemblyComponents();
         builder.Services.AddScoped<IProductsService, ProductsService>();
         builder.Services.AddScoped<ICategoriesService, CategoriesService>();
+        builder.Services.AddScoped<ISalesService, SalesService>();
         builder.Services.AddControllers();
 
         builder.Services.AddDbContext<PcPartsDbContext>(options =>

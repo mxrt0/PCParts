@@ -44,7 +44,7 @@ public class ProductsController : ControllerBase
         }
         catch (ProductNotFoundException ex)
         {
-            return BadRequest(new { errorMessage = ex.Message });
+            return NotFound(new { errorMessage = ex.Message });
         }
         catch (Exception)
         {
