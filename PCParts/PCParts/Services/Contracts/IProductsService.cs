@@ -5,4 +5,5 @@ public interface IProductsService
 {
     Task<ProductDto> AddProductAsync(CreateProductDto createDto);
     Task<ProductDto> GetProductByIdAsync(int productId);
+    Task<List<ProductDto>> GetProductsAsync(int pageNumber, int pageSize);
 }

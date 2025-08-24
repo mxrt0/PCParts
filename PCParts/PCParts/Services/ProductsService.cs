@@ -34,6 +34,16 @@ public class ProductsService : IProductsService
 
     }
 
+    public async Task<List<ProductDto>> GetProductsAsync(int pageNumber, int pageSize)
+    {
+        return await _dbContext.Products
+            .Where(p => !p.IsDeleted)
+            .Skip((pageNumber - 1) * pageSize)
+            .Take(pageSize)
+            .Include(p => p.Category)
+            .Select(p => p.ToDto()).ToListAsync();
+    }
+
     public async Task<ProductDto> GetProductByIdAsync(int productId)
     {
         var product = await _dbContext.Products

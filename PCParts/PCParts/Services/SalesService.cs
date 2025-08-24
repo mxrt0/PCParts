@@ -34,9 +34,17 @@ public class SalesService : ISalesService
                 {
                     throw new ProductNotFoundException($"Product with id {product.ProductId} not found.");
                 }
-
+                if (productEntity.IsOutOfStock)
+                {
+                    throw new InvalidOperationException($"{productEntity.Name} is out of stock!");
+                }
+                if (productEntity.Quantity < product.Quantity)
+                {
+                    throw new InvalidOperationException($"Not enough stock for {productEntity.Name}!");
+                }
                 var productSale = new ProductSale { ProductId = productEntity.Id, Quantity = product.Quantity, UnitPriceAtSale = productEntity.Price };
                 sale.ProductSales.Add(productSale);
+                productEntity.Quantity -= product.Quantity;
             }
 
             _dbContext.Sales.Add(sale);
@@ -49,6 +57,10 @@ public class SalesService : ISalesService
                     .LoadAsync();
             }
             return sale.ToDto();
+        }
+        catch (InvalidOperationException ex)
+        {
+            throw new SaleCreationFailedException(ex.Message);
         }
         catch (Exception)
         {

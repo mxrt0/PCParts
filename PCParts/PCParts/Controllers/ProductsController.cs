@@ -50,6 +50,19 @@ public class ProductsController : ControllerBase
         {
             return StatusCode(500, new { errorMessage = "Internal server error!" });
         }
+    }
 
+    [HttpGet]
+    public async Task<ActionResult<List<ProductDto>>> GetProducts([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+    {
+        try
+        {
+            var products = await _productsService.GetProductsAsync(pageNumber, pageSize);
+            return Ok(products);
+        }
+        catch (Exception)
+        {
+            return StatusCode(500, new { errorMessage = "Internal server error!" });
+        }
     }
 }
