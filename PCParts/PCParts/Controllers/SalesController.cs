@@ -6,7 +6,7 @@ using PCParts.Services.Contracts;
 namespace PCParts.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/[controller]")]
 public class SalesController : ControllerBase
 {
     private ISalesService _salesService;

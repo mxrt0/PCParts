@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using PCParts.Components;
 using PCParts.Data.Context;
 using PCParts.Services;
 using PCParts.Services.Contracts;
@@ -22,7 +21,7 @@ public class Program
         builder.Services.AddScoped<ICategoriesService, CategoriesService>();
         builder.Services.AddScoped<ISalesService, SalesService>();
         builder.Services.AddControllers();
-
+        builder.Services.AddHttpClient();
         builder.Services.AddDbContext<PcPartsDbContext>(options =>
             options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"))
         );
@@ -42,7 +41,6 @@ public class Program
         }
 
         app.UseHttpsRedirection();
-        app.UseBlazorFrameworkFiles();
         app.UseStaticFiles();
         app.MapFallbackToFile("index.html");
 
@@ -50,12 +48,6 @@ public class Program
 
         app.UseStaticFiles();
         app.UseAntiforgery();
-
-        app.MapRazorComponents<App>()
-            .AddInteractiveServerRenderMode()
-            .AddInteractiveWebAssemblyRenderMode()
-            .AddAdditionalAssemblies(typeof(Client._Imports).Assembly);
-
         app.Run();
     }
 }

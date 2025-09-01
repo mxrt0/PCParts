@@ -1,0 +1,9 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  }
+	"DefaultConnection": "YOUR_SQLITE_DB_PATH"
+}
